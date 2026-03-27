@@ -1,0 +1,4 @@
+pip install torch==1.11.0 torchvision==0.12.0 torchaudio==0.11.0
+pip install open3d==0.16.0 scipy==1.7.3 numpy==1.21.6
+pip install tqdm==4.64.1 pyyaml==6.0 scikit-learn==1.0.2
+pip install numba==0.56.4  # 加速图矩阵计算

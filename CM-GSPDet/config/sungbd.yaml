@@ -1,0 +1,36 @@
+# 数据集配置
+data:
+  root: "./data/sunrgbd/"
+  train_split: 5285
+  val_split: 5050
+  H: 480
+  W: 640
+  normalize:
+    rgb_mean: [0.485, 0.456, 0.406]
+    rgb_std: [0.229, 0.224, 0.225]
+
+# 模型配置
+model:
+  d_model: 256
+  nhead: 8
+  dim_feedforward: 1024
+  sigma_s: 0.1    # CM-GSP空间缩放
+  sigma_c: 0.05   # CM-GSP颜色缩放
+  alpha: 0.1      # CM-GSP正则化权重
+  tau: 0.3        # Dynamic GWD灵敏度
+
+# 训练配置
+train:
+  epochs: 100
+  batch_size: 6   # 论文batch size=6
+  lr: 2e-4        # 论文初始学习率
+  weight_decay: 0.1  # AdamW权重衰减
+  grad_clip: 0.1     # 梯度裁剪L2范数（论文3.2节）
+  device: "cuda:0" if torch.cuda.is_available() else "cpu"
+  save_path: "./checkpoints/"
+
+# 测试配置
+test:
+  iou_threshold: 0.25  # 论文AP/AR评估阈值0.25
+  vis: True            # 3D框可视化
+  save_vis: "./vis_results/"
